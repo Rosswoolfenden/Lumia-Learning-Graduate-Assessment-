@@ -9,7 +9,7 @@ const router = Router({prefix: '/api/movies'});
 
 router.post('/addmovie', bodyParser(), auth, addmovie);
 router.del('/delmovie', bodyParser(), auth, removeMovies);
-// router.get('/mymovies', auth, getMovies);
+router.get('/mymovies', auth, getMovies);
 
 
 
@@ -62,6 +62,23 @@ router.del('/delmovie', bodyParser(), auth, removeMovies);
             res = {Sucsess: false, message: 'Failed to add to favirotes'};   
         }
         ctx.body= res;
+    } catch (e) {
+        log.error(e.toString());
+        ctx.status = 500;
+        ctx.body = {Error: 'Server Error, please try again'};
+    }
+}
+
+/**
+ * Route to retrive users faviroute books
+ * @param {Object} ctx - The koa Request/response object 
+ */
+ async function getMovies(ctx) {
+    const username = ctx.state.user.username;
+    try {  
+        const res = await model.getOwnMovies(username);
+        ctx.status = 200;
+        ctx.body = res
     } catch (e) {
         log.error(e.toString());
         ctx.status = 500;
