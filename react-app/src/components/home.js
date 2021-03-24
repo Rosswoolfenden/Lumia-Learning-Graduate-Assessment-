@@ -1,6 +1,7 @@
 import '../App.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MovieCards from './moviecard';
 
 
 function Home(props) {
@@ -36,7 +37,7 @@ function Home(props) {
 
         <div className="cardlist">
           {/*  */}
-          <p> Movies go here </p>
+          {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Remove"}/> )})}
         </div>  
       </div>
     </>  
