@@ -38,17 +38,19 @@
 .movierow{
   display: flex;
   flex-direction: row;
-  width: 800px;
+  width: 1200px;
 }
 
-.moviecard {
-  width: auto;
-}
+
 
 .cardlist{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.card{
+  width: 100%;
 }
 
 .imagecard{

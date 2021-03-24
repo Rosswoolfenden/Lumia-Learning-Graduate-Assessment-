@@ -16,7 +16,7 @@ function MovieCards(props) {
   };
 
   useEffect(() => {
-    axios.get('http://www.omdbapi.com/?apikey=59d90756&i=' + props.movieid )
+    axios.get('http://www.omdbapi.com/?apikey=59d90756&i=' + props.movieid + "&plot=full")
       .then(res => {
         setMovie(res.data);
         console.log(movie)
@@ -67,11 +67,11 @@ function MovieCards(props) {
 
   return (
     <>
-      <div className="moviecard">
+      <div >
         {movie ? (
           <div className= "movierow">
-              <Image className="imagecard" src={movie.Poster} />
-            <Card>
+            <Image className="imagecard" src={movie.Poster} />
+            <Card className="card">
               <Meta title={movie.Title  + "  -  " + movie.Year} />
               <Meta description={"Director: " + movie.Director} />
               <Meta description={"Genre:  " + movie.Genre} />
