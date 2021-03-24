@@ -65,7 +65,7 @@ exports.getOwnMovies = async(username) => {
 
     for(let i =0; i < faveArrays.length; i ++) {
         if(!(faveArrays[i] == movieid)) {
-            log.info("found this one");
+            log.debug("found movie");
             newFavirotes.push(faveArrays[i])
         } 
     }
