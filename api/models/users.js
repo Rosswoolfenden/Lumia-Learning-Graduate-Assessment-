@@ -22,3 +22,19 @@ const log = logging.createLogger('User Model');
     return result;
  }
 
+
+ 
+ /**
+ * A Function to to find user by username
+ * @param {String} username String containing the inputted username
+ */
+  exports.findUser =  async(username) => {
+    const query = 'SELECT * FROM users WHERE username = ?;';
+    const result = await db.sqlquery(query, username);
+    if(result.length === 1) {
+        return result[0]
+    } else {
+        log.debug(username + ' does not exist in database');
+        return false;
+    }
+ }

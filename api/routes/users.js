@@ -3,8 +3,11 @@ const bodyParser = require('koa-bodyparser');
 const logging = require('../logging/WinstonLogging');
 const router = Router({prefix: '/api/users'});
 const log = logging.createLogger('Users Routes');
+const model = require('../models/users');
+const auth = require('../controllers/auth');
 
-router.post('/', welcome);
+// router.post('/', welcome);
+router.post('/', bodyParser(), auth, login);
 router.post('/register', bodyParser(), register);
 
 
@@ -49,6 +52,17 @@ router.post('/register', bodyParser(), register);
         ctx.status = 500;
         ctx.body = {Error: 'Server Error, please try again'};
     }
+}
+
+/** 
+* Route to do basic log in.
+* @param {Object} ctx - The koa Request/response object  
+*/
+async function login(ctx) {
+    const user = ctx.state.user;
+    log.info(`${user.username} has logged in `);
+    ctx.status= 200;
+    ctx.body = {Success: true, User: user};
 }
 
 module.exports = router;
