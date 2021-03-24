@@ -1,5 +1,5 @@
 import '../App.css';
-import { Card, Button } from 'antd';
+import { Card, Button, Image } from 'antd';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 // import PostGrid from './postgrid';
@@ -70,8 +70,7 @@ function MovieCards(props) {
       <div className="moviecard">
         {movie ? (
           <div className= "movierow">
-            <Card className = "imagecard"cover={<img src={movie.Poster} /> } >
-            </Card>
+              <Image className="imagecard" src={movie.Poster} />
             <Card>
               <Meta title={movie.Title  + "  -  " + movie.Year} />
               <Meta description={"Director: " + movie.Director} />

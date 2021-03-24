@@ -52,7 +52,7 @@
 }
 
 .imagecard{
-  width: 40%; 
+  width: fit-content;
 }
 
 p{
