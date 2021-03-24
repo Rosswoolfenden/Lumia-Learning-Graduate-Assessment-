@@ -51,6 +51,10 @@
   align-items: center;
 }
 
+.imagecard{
+  width: 40%; 
+}
+
 p{
   word-break: break-all;
   white-space: pre-wrap;
