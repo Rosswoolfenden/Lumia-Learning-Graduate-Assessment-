@@ -2,6 +2,8 @@ import '../App.css';
 
 import{ PageHeader, Input} from 'antd';
 import { useState } from 'react';
+import axios from 'axios';
+import MovieCards from './moviecard';
 
 
 const {Search} = Input;
@@ -11,11 +13,27 @@ const {Search} = Input;
 function AddMovies() {
 
   const [input, setInput] =  useState();
+  const [movies, setMovies] =  useState();
 
   async function search() {
     console.log("We are searching");
+
+    axios.get('https://www.omdbapi.com/?s=' + input + '&apikey=4a3b711b')
+      .then(res => {
+        addToState(res.data.Search);
+      }).catch(err => {
+        console.log("Search Failed");
+        alert("Movie search failed");
+      })
   }
-  
+  async function addToState (movieList) {
+    console.log(movieList);
+    const idlist = [];
+    for(const i in movieList) {
+      idlist.push(movieList[i].imdbID)
+    }
+    setMovies(idlist);
+  }
   const inputChange = (e) => {
     setInput(e.target.value);
     console.log(input)
@@ -35,6 +53,9 @@ function AddMovies() {
               title="Add to my Favirote Movies"
               subTitle="Welcome to my favirote movies"/>
           </div>  
+          <div className="cardlist">
+            {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Add"}/> )})}
+          </div>
         </div>
       </>  
     );

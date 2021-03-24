@@ -16,12 +16,13 @@ function MovieCards(props) {
   };
 
   useEffect(() => {
-    axios.get('http://www.omdbapi.com/?apikey=59d90756&i=' + props.movieid)
+    axios.get('http://www.omdbapi.com/?apikey=59d90756&i=' + props.movieid + "&plot=full")
       .then(res => {
         setMovie(res.data);
         console.log(movie)
       }).catch(err =>{
         console.log("An error occured");
+        alert("Failed to collect movie data")
         console.log(err);
       });
       setAddrem(props.addrem)

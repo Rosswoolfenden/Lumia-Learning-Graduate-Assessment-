@@ -23,6 +23,7 @@ function Home(props) {
       // console.log( movies)
     }).catch(err => {
       // Todo - better handling of errors
+      alert("Failed to collect");
       console.log(err);
     });
   }, []);
