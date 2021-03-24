@@ -71,6 +71,7 @@ exports.getOwnMovies = async(username) => {
     }
     newFavirotes = newFavirotes.toString();
     const result = await updateMovies(newFavirotes, username);
+ 
    
     return result;
 }
