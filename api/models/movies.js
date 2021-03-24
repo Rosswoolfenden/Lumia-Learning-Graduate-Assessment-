@@ -50,3 +50,27 @@ exports.getOwnMovies = async(username) => {
    
     return result[0];
 }
+
+
+/**
+ * A Function to delete movie from favirotes list
+ * @param {String} username A string containin users username
+ * @param {String} movieid A string containin movie id the users wants to remove
+ */
+ exports.deleteMovie = async(username, movieid) => {
+
+    let favirotes = await this.getOwnMovies(username);
+    faveArrays = (favirotes.favourite_movies).split(',');
+    let newFavirotes = [];
+
+    for(let i =0; i < faveArrays.length; i ++) {
+        if(!(faveArrays[i] == movieid)) {
+            log.info("found this one");
+            newFavirotes.push(faveArrays[i])
+        } 
+    }
+    newFavirotes = newFavirotes.toString();
+    const result = await updateMovies(newFavirotes, username);
+   
+    return result;
+}
