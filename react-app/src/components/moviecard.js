@@ -33,14 +33,16 @@ function MovieCards(props) {
   async function add_remove_movie(){
     let url;
     let action;
+    let message;
     console.log(id)
     if(addrem === "Remove") {
-        console.log("Remove")
         url = "http://localhost:8080/api/movies/delmovie";
-        action =  'delete'
+        action =  'delete';
+        message = "Succsefully removed movie!";
     } else  if( addrem === "Add") {
         url = "http://localhost:8080/api/movies/addmovie";
-        action = 'post'
+        action = 'post';
+        message = "Succsesfully added movie!";
     }
 
     axios({
@@ -56,11 +58,10 @@ function MovieCards(props) {
     }).then(res => {
         console.log(res)
 
-        alert("Succsefully complete action")
+        alert(message)
     }).catch(err => {
-        alert("Unable to complete action");
-    })
-    console.log("I have been pressed yay");
+        alert(message);
+    });
   }
   
 
