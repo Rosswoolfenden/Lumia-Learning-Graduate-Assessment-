@@ -26,3 +26,27 @@ const log = logging.createLogger('Movies Model');
     return result;
 
  }
+
+ /**
+ * A Function to call the sql query to update movie list -  seperate function to avoid repeating code 
+ * @param {String} favirotes A string with the new faviorte movies
+ * @param {String} movieid  string with the users username
+ */
+  async function updateMovies(favirotes, username) {
+
+    const query = 'UPDATE users SET favourite_movies = ? WHERE username = ?';
+    const result = await db.sqlquery(query, [favirotes, username]);
+    return result;
+    
+  }
+
+/**
+ * A Function to get all faviorute movies for user.
+ * @param {String} username A string containin users username
+ */
+exports.getOwnMovies = async(username) => {
+    const query = 'SELECT favourite_movies FROM users WHERE username = ?';
+    const result = await db.sqlquery(query, [username]);
+   
+    return result[0];
+}

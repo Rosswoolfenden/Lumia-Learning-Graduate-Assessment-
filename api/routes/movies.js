@@ -1,7 +1,7 @@
 const Router = require('koa-router');
 const bodyParser = require('koa-bodyparser');
 const logging = require('../logging/WinstonLogging');
-// const model = require('../models/movies');
+const model = require('../models/movies');
 const auth = require('../controllers/auth');
 const log = logging.createLogger('Movie Routes');
 const router = Router({prefix: '/api/movies'});
