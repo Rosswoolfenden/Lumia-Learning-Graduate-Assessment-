@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css'; 
+
 .App {
   text-align: center;
 }
@@ -27,7 +29,32 @@
 .App-link {
   color: #61dafb;
 }
+.page-header {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  display: flex;
+  justify-content: center;
+}
+.movierow{
+  display: flex;
+  flex-direction: row;
+  width: 800px;
+}
 
+.moviecard {
+  width: auto;
+}
+
+.cardlist{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+p{
+  word-break: break-all;
+  white-space: pre-wrap;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
