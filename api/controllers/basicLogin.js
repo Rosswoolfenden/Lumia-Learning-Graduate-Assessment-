@@ -10,6 +10,7 @@ const bycrpt = require('bcrypt');
  * @param {String} inpassword Password that has been entered by the user
  */
 const passMatch = function(dbpassword, inpassword) {
+
     const match = bycrpt.compareSync(inpassword, dbpassword);
     return match;
 }
@@ -44,6 +45,7 @@ const LoginStrategy = async(username, password, done) => {
             return done(null, false);
         }
     } catch(e){
+        log.error(e.toString());
         return done(e);
     }
 }

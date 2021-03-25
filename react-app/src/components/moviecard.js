@@ -1,7 +1,8 @@
 import '../App.css';
 import { Card, Button, Image } from 'antd';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { UserContext } from '../contexts/usercontext';
 // import PostGrid from './postgrid';
 
 const { Meta } =  Card;
@@ -10,10 +11,7 @@ function MovieCards(props) {
   const [addrem, setAddrem] =  useState();
   const [id, setId] =  useState();
 
-  const auth = {
-    username: 'user',
-    password: 'qwerty'
-  };
+  const { auth } = useContext(UserContext);
 
   useEffect(() => {
     axios.get('http://www.omdbapi.com/?apikey=59d90756&i=' + props.movieid + "&plot=full")

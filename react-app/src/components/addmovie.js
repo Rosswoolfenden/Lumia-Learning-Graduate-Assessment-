@@ -1,17 +1,17 @@
 import '../App.css';
 
 import{ PageHeader, Input} from 'antd';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import MovieCards from './moviecard';
-
+import { UserContext} from '../contexts/usercontext';
+import { Redirect } from 'react-router';
 
 const {Search} = Input;
 
-
-
 function AddMovies() {
 
+  const { auth } = useContext(UserContext);
   const [input, setInput] =  useState();
   const [movies, setMovies] =  useState();
 
@@ -44,23 +44,27 @@ function AddMovies() {
 
   return (
       <>
-        <div className="site-layout-content">
-          <div style={{ padding: '2% 20%' }}>
-            <Search placeholder="Search for a movie! "
-              allowClear
-              enterButton="Search"
-              size="large"
-              onChange={inputChange}
-              onSearch={search}/>
-            <PageHeader className="site-page-header"
-              title="Add to my Favirote Movies"
-              subTitle="Welcome to my favirote movies"/>
-          </div> 
-          <div className="cardlist">
-            {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Add"}/> )})}
-            
+      {!auth ? (
+        <Redirect to={{pathname: "/login"}} />
+      ) : (
+          <div className="site-layout-content">
+            <div style={{ padding: '2% 20%' }}>
+              <Search placeholder="Search for a movie! "
+                allowClear
+                enterButton="Search"
+                size="large"
+                onChange={inputChange}
+                onSearch={search}/>
+              <PageHeader className="site-page-header"
+                title="Add to my Favirote Movies"
+                subTitle="Welcome to my favirote movies"/>
+            </div> 
+            <div className="cardlist">
+              {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Add"}/> )})}
+              
+            </div>
           </div>
-        </div>
+        )}
       </>  
     );
 }

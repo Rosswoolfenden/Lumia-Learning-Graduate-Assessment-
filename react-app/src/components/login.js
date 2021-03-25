@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import { Card, Form, Input, Button, Checkbox} from 'antd';
+import {UserContext} from '../contexts/usercontext';
 import axios from 'axios';
 
 
@@ -14,10 +15,12 @@ const userFeilds = {
 }
 function Login(props) {
     const [user, setUser] =  useState(userFeilds);
+    const { auth, setAuth } =  useContext(UserContext);
 
     const inputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
     }
+    
     async function loginAttempt() {
         axios({
             method: 'post',
@@ -27,6 +30,9 @@ function Login(props) {
             }
         }).then(res => {
             console.log(res);
+            const userdata = res.data.User;
+            userdata.password = user.password;
+            setAuth(userdata);
         }).catch(err => {
             console.log(err)
             alert("Failed to log in, try again");

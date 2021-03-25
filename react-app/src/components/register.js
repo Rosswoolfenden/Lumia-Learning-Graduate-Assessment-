@@ -19,7 +19,6 @@ function Register(props) {
 
     const inputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
-        console.log(user)
     }
     async function loginAttempt() {
         axios({
@@ -31,6 +30,9 @@ function Register(props) {
             
         }).then(res => {
             console.log(res);
+            alert('Succsesfully added new user, welcome')
+            // props.refresh(true)
+            props.refresh();
         }).catch(err => {
             console.log(err)
             alert("Failed to log in, try again");

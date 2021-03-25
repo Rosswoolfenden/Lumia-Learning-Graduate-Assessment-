@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React, { useState, useMemo } from 'react';
 import './App.css';
 import Home from './components/home';
 import Navbar from './components/navigation';
@@ -10,13 +10,19 @@ import {
   Switch
 } from 'react-router-dom';
 import { Layout } from 'antd';
+import {UserContext} from './contexts/usercontext';
 // import { Content, Header } from 'antd/lib/layout/layout';
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
+
+  const [ auth, setAuth ] = useState();
+  const value = useMemo(() => ({auth, setAuth}), [auth, setAuth]);
   return (
     <Router>
+      <div> 
+      <UserContext.Provider value={value}> 
       <Layout className='layout'>
 
         <Header>
@@ -33,7 +39,8 @@ function App() {
 
         <Footer style={{ textAlign: 'center' }}>Created By Ross Woolfenden for Lumia Learning Graduate Assessment</Footer>
         </Layout>
-
+        </UserContext.Provider>
+        </div>
     </Router>
     
   );

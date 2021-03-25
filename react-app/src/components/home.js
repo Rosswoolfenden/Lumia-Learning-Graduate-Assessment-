@@ -1,16 +1,25 @@
 import '../App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import MovieCards from './moviecard';
-
+import { UserContext } from '../contexts/usercontext';
+import { Redirect } from 'react-router';
 
 function Home(props) {
+
+  const { auth } = useContext(UserContext);
+  
   const [movies, setMovies] = useState();
-  const auth = {
+  const auth1 = {
     username: 'user',
     password: 'qwerty'
   };
   useEffect(() => {
+    console.log(auth.username);
+    console.log(auth.password);
+    if(!auth) {
+      return;
+    }
     axios({
       method: 'get',
       url: 'http://localhost:8080/api/movies/mymovies',
@@ -28,19 +37,29 @@ function Home(props) {
     });
   }, []);
 
+  const redirect = () => {
+    console.log("Redirecting")
+  }
+
   // faveArrays = (favirotes.favourite_movies).split(',');
   return (
     <>
-      <div className="site-layout-content">
-        <div className="page-header">
-          <h1> Your favourites! </h1>
-        </div>
+      
+        {!auth  ? (
+          <Redirect to={{pathname: "/login"}} />
+        ) : (
+          <div className="site-layout-content">
+          <div className="page-header">
+            <h1> Your favourites! </h1>
+          </div>
 
-        <div className="cardlist">
-          {/*  */}
-          {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Remove"}/> )})}
-        </div>  
+          <div className="cardlist">
+            {/*  */}
+            {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Remove"}/> )})}
+          </div>  
       </div>
+        )}
+        
     </>  
   );
 }
