@@ -41,8 +41,6 @@
   width: 1200px;
 }
 
-
-
 .cardlist{
   display: flex;
   flex-direction: column;
@@ -57,10 +55,29 @@
   width: fit-content;
 }
 
+.auth-page{
+  justify-content: center;
+  justify-items: center;
+}
+.auth-tab{
+  width: 50%;
+  justify-self: center;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.login-card{
+  justify-self: center;
+}
+
+.submit {
+  align-self:center;
+}
 p{
   word-break: break-all;
   white-space: pre-wrap;
 }
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

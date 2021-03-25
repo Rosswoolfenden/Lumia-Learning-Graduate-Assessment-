@@ -33,6 +33,9 @@ function AddMovies() {
       idlist.push(movieList[i].imdbID)
     }
     setMovies(idlist);
+    if(idlist.length === 0 ) {
+      alert("No movies match your search")
+    }
   }
   const inputChange = (e) => {
     setInput(e.target.value);
@@ -52,9 +55,10 @@ function AddMovies() {
             <PageHeader className="site-page-header"
               title="Add to my Favirote Movies"
               subTitle="Welcome to my favirote movies"/>
-          </div>  
+          </div> 
           <div className="cardlist">
             {movies && movies.map(movie => { return( <MovieCards movieid={movie} addrem={"Add"}/> )})}
+            
           </div>
         </div>
       </>  

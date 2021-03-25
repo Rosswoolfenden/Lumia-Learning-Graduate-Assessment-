@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/home';
 import Navbar from './components/navigation';
 import AddMovies from './components/addmovie';
+import Auth from './components/auth';
 import {
   BrowserRouter as Router,
   Route,
@@ -26,6 +27,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/add" exact component={AddMovies} />
+            <Route path="/login" exact component={Auth} />
           </Switch>
         </Content>
 

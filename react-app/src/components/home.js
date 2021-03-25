@@ -33,7 +33,7 @@ function Home(props) {
     <>
       <div className="site-layout-content">
         <div className="page-header">
-          <h1> Your favirotes! </h1>
+          <h1> Your favourites! </h1>
         </div>
 
         <div className="cardlist">
