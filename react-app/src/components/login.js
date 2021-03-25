@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react';
-import { Card, Form, Input, Button, Checkbox} from 'antd';
+import { Card, Form, Input, Button} from 'antd';
 import {UserContext} from '../contexts/usercontext';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 
 const { Meta } = Card;
@@ -20,7 +21,7 @@ function Login(props) {
     const inputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
     }
-    
+
     async function loginAttempt() {
         axios({
             method: 'post',
@@ -40,29 +41,34 @@ function Login(props) {
     }
     return (
         <div>
-            <Card className="login-card">
-                <Meta title={"Login"} /> 
-                <Form>
-                    <Form.Item
-                        label="Username"
-                        name="username"
-                        rules={[{required: true, message: 'Enter a username!'}]}
-                        >
-                        <Input name="username" onChange={inputChange}/>
-                    </Form.Item>
-                    <Form.Item
-                        label="Password"
-                        name="password"
-                        rules={[{required: true, message: 'Enter your password!'}]}
-                        >
-                        <Input.Password name="password" onChange={inputChange}/>
-                    </Form.Item>
-                    <Form.Item {...tailLayout}>
-                        <Button onClick={loginAttempt} className="submit" htmlType="submit"> Submit </Button>
-                    </Form.Item>
-                    
-                </Form>
-            </Card>
+            {auth ? (
+                <Redirect to={{pathname: "/"}} />  
+            ): (
+                <Card className="login-card">
+                    <Meta title={"Login"} /> 
+                    <Form>
+                        <Form.Item
+                            label="Username"
+                            name="username"
+                            rules={[{required: true, message: 'Enter a username!'}]}
+                            >
+                            <Input name="username" onChange={inputChange}/>
+                        </Form.Item>
+                        <Form.Item
+                            label="Password"
+                            name="password"
+                            rules={[{required: true, message: 'Enter your password!'}]}
+                            >
+                            <Input.Password name="password" onChange={inputChange}/>
+                        </Form.Item>
+                        <Form.Item {...tailLayout}>
+                            <Button onClick={loginAttempt} className="submit" htmlType="submit"> Submit </Button>
+                        </Form.Item>
+                        
+                    </Form>
+                </Card>
+            )}
+            
             
         </div>
     );
