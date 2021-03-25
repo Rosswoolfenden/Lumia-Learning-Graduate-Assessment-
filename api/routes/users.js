@@ -33,7 +33,7 @@ router.post('/register', bodyParser(), register);
  * @param {Object} ctx - The koa Request/response object  
  */
  async function register(ctx) {
-    const body = ctx.request.body;
+    const body = ctx.request.body.user;
     try {
         const succsess = await model.registerUser(body);
         let res;

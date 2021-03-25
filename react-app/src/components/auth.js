@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import { Card, Tabs } from 'antd';
 import Login from './login';
+import Register from './register';
 
-const { Meta } =  Card;
+
 const { TabPane } =  Tabs;
 
 function Auth(props) {
@@ -18,7 +19,7 @@ function Auth(props) {
             <Login />
           </TabPane>
           <TabPane tab="Register" key="2">
-            <h1> Register </h1>
+            <Register />
           </TabPane>
         </Tabs>
     </div>

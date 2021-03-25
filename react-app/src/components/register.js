@@ -9,22 +9,26 @@ const tailLayout = {
   };
 
 const userFeilds = {
+    firstName: "",
+    lastName: "",
     username: "",
     password: "",
 }
-function Login(props) {
+function Register(props) {
     const [user, setUser] =  useState(userFeilds);
 
     const inputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
+        console.log(user)
     }
     async function loginAttempt() {
         axios({
             method: 'post',
-            url: "http://localhost:8080/api/users/",
-            headers: {
-                "Authorization": "Basic " + btoa(user.username + ":" + user.password),
+            url: "http://localhost:8080/api/users/register",
+            data: {
+                user
             }
+            
         }).then(res => {
             console.log(res);
         }).catch(err => {
@@ -37,6 +41,18 @@ function Login(props) {
             <Card className="login-card">
                 <Meta title={"Login"} /> 
                 <Form>
+                    <Form.Item
+                        label="First Name"
+                        name="firstname"
+                        >
+                        <Input name="firstName" onChange={inputChange}/>
+                    </Form.Item>
+                    <Form.Item
+                        label="Last Name"
+                        name="lastname"
+                        >
+                        <Input name="lastName" onChange={inputChange}/>
+                    </Form.Item>
                     <Form.Item
                         label="Username"
                         name="username"
@@ -62,4 +78,4 @@ function Login(props) {
     );
 }
 
-export default Login;
+export default Register;
