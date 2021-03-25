@@ -8,26 +8,30 @@ const tailLayout = {
     wrapperCol: { offset: 22, span: 16 },
   };
 
+// Initial user feilds to add to state
 const userFeilds = {
     firstName: "",
     lastName: "",
     username: "",
     password: "",
 }
+
+// Component to register new users
 function Register(props) {
     const [user, setUser] =  useState(userFeilds);
 
     const inputChange = (e) => {
         setUser({...user, [e.target.name]: e.target.value});
     }
-    async function loginAttempt() {
+
+    // todo seperate function.
+    async function registerAttempt() {
         axios({
             method: 'post',
             url: "http://localhost:8080/api/users/register",
             data: {
                 user
             }
-            
         }).then(res => {
             console.log(res);
             alert('Succsesfully added new user, welcome')
@@ -70,7 +74,7 @@ function Register(props) {
                         <Input.Password name="password" onChange={inputChange}/>
                     </Form.Item>
                     <Form.Item {...tailLayout}>
-                        <Button onClick={loginAttempt} className="submit" htmlType="submit"> Submit </Button>
+                        <Button onClick={registerAttempt} className="submit" htmlType="submit"> Submit </Button>
                     </Form.Item>
                     
                 </Form>

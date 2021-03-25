@@ -26,6 +26,8 @@ function AddMovies() {
         alert("Movie search failed");
       })
   }
+
+  // todo - seperate function.
   async function addToState (movieList) {
     console.log(movieList);
     const idlist = [];

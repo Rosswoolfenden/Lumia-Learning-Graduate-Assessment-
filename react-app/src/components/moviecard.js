@@ -3,8 +3,8 @@ import { Card, Button, Image } from 'antd';
 import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { UserContext } from '../contexts/usercontext';
-// import PostGrid from './postgrid';
 
+// Component to display movie details - reused for search.
 const { Meta } =  Card;
 function MovieCards(props) {
   const [movie, setMovie] =  useState();
@@ -28,6 +28,7 @@ function MovieCards(props) {
 
   }, []);
 
+  // todo - seperate function for better testability 
   async function add_remove_movie(){
     let url;
     let action;
@@ -42,7 +43,6 @@ function MovieCards(props) {
         action = 'post';
         message = "Succsesfully added movie!";
     }
-
     axios({
         method: action,
         url: url,
@@ -52,7 +52,6 @@ function MovieCards(props) {
         data: {
             "movie": id.toString()
         },
-        
     }).then(res => {
         console.log(res)
 

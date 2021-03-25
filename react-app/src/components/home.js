@@ -9,17 +9,13 @@ function Home(props) {
 
   const { auth } = useContext(UserContext);
   
+  // Hook states to store movie list.
   const [movies, setMovies] = useState();
-  const auth1 = {
-    username: 'user',
-    password: 'qwerty'
-  };
   useEffect(() => {
-    console.log(auth.username);
-    console.log(auth.password);
     if(!auth) {
       return;
     }
+    // Call api for movie list.
     axios({
       method: 'get',
       url: 'http://localhost:8080/api/movies/mymovies',
@@ -27,8 +23,14 @@ function Home(props) {
         "Authorization": "Basic " + btoa(auth.username + ":" + auth.password),
       }
     }).then(res => {
+      console.log(res);
+      if(!res.data.favourite_movies) {
+        alert("You have no faviroute movies! Use the search to discover!");
+      } else {
+        setMovies((res.data.favourite_movies).split(','))
+      }
       // What to do we with the resposne
-      setMovies((res.data.favourite_movies).split(','))
+      
       // console.log( movies)
     }).catch(err => {
       // Todo - better handling of errors
@@ -37,9 +39,6 @@ function Home(props) {
     });
   }, []);
 
-  const redirect = () => {
-    console.log("Redirecting")
-  }
 
   // faveArrays = (favirotes.favourite_movies).split(',');
   return (
