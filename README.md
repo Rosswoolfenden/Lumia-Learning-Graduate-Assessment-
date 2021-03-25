@@ -9,7 +9,7 @@ To clone repo: `git clone https://github.com/Rosswoolfenden/Lumia-Learning-Gradu
 
 To install dependencies: `npm i`
 
-To start API: `node index.js`
+To start API: `npm start`
 
 ### frontend: `cd react-app`
 
