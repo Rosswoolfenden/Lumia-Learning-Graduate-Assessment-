@@ -8,6 +8,7 @@ To clone repo: `git clone https://github.com/Rosswoolfenden/Lumia-Learning-Gradu
 ### Backend: `cd api`
 
 `Update config with host and user details for databse`
+
 To install dependencies: `npm i`
 
 To start API: `npm start`
