@@ -46,6 +46,8 @@ The frontend code base is very messy and unoptimized. Currently there is little 
 
 I did not spend as much time as I would of liked in tweaking with the design of the page. It is not responsive to different screen sizes or for mobile use. 
 
+Another issue with the project is the way I store the data. As a best practise it is better to store third party API data locally for ease of accsess and less chance of the data being available. However due to time restrictions i resorted to calling the API from the frontend. If i were to implement this, another database table would need to be added for movies.
+
 The React frontend was the part of this project I struggled with the most. Having less experience using the framework I had to learn as I developed. This led to the code not following many best practices. It was a very good project to develop my skills with the framework. 
 
 ### Next Steps.
