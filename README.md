@@ -32,7 +32,8 @@ I chose to store my data using MariaDB. It offers better performance than MySQL 
 
 ### About the system - features and issues.
 The system has a basic auth system. Should the system be further developed Auth0 should be implemented for better security.
-The login system has some issues. The backend does not pre check if a username exists in the table so does not provide good feedback to the user if the username is already taken.
+The login system has some issues. The backend does not pre check if a username exists in the table so does not provide good feedback to the user if the username is already taken. The auth system also meant the databse was changed and a username column was added.
+
 I chose to implement a search function to allow users to search for films by title using the ombd API search functionality. I chose to implement this feature as a more intuitive way for users to add their favourite movies. The solution works well but does have some issues.
 issues:
 - The input does not have any protection against XSS attacks which creates security issue. 
